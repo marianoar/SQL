@@ -50,3 +50,32 @@ begin
 	break;
 	set @vcount2 = @vcount2 + 1;
 end
+
+-- TRY... CATCH
+BEGIN TRY
+	--select 1/0
+	select 1 
+END TRY
+BEGIN CATCH
+	SELECT 'Hay un error'
+END CATCH
+-- FUNCIONES DE ERROR
+	--solamente trabajan dentro de un CATCH
+
+	 error_number()
+	 error_severity()
+	 error_procedure()
+	 error_line()
+	 error_message()
+	 
+    begin try
+	select 1/0 
+	select 1
+	end try
+	begin catch 
+	select  error_number() as Err_number,
+	 error_severity() ErrSeverity,
+	 error_procedure() ErrProcedure,
+	 error_line() line,
+	 error_message() message
+	end catch
